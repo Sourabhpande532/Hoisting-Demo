@@ -4,12 +4,13 @@ import {UserList} from './components/UserList';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+const BASE_URL = "https://hoisting-demo-production.up.railway.app/";
 
 function App() {
     // for storing perpose
     const [userDataFrDb, setUserDataFrDb] = useState(null)
     const bringUserData = async () => {
-      const getRes = await axios.get("/getUser");
+      const getRes = await axios.get(`${BASE_URL}/getUser`);
       console.log(getRes);
 
       /* If No users are there please don't set/send the value Note : prototype lectures*/
@@ -28,8 +29,8 @@ function App() {
 
   return (
     <div>
-    <Form bringUserData = {bringUserData}/>
-    <UserList usersInfo ={userDataFrDb} bringUserData={bringUserData}/>
+    <Form bringUserData = {bringUserData} BASE_URL={BASE_URL} />
+    <UserList usersInfo ={userDataFrDb} bringUserData={bringUserData} BASE_URL={BASE_URL} />
     </div>
   );
 }

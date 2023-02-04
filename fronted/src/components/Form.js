@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios";
 
-const Form = (props) => {
+const Form = (props,{BASE_URL}) => {
 /*Logic:=> take Data from fronted Stored somewhere(useState) then send to Backend */
 const [userInputName, setUserInputName] = useState("");
 const [userInputEmail, setUserInputEmail] = useState("");
@@ -14,7 +14,7 @@ const submitDetail = async() =>{
     email:userInputEmail
   };
 /*Use Axios Who communicate with fronted to Backend */
-const sendData = await axios.post("/fetchUser", data);
+const sendData = await axios.post(`${BASE_URL}/fetchUser`, data);
 if (sendData.status === 201 && sendData.data.success) {
   console.log("User created", sendData);
   props.bringUserData();

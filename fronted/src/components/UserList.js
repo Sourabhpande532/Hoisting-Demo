@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const UserList = (props) => {
+export const UserList = (props,{BASE_URL}) => {
   // EDIT
   const editUser = async (user) => {
     /*Take info from fronted while editing someone click via prompt */
@@ -11,7 +11,7 @@ export const UserList = (props) => {
     if (!userName || !userEmail) {
       alert("Both things is mandatory");
     } else {
-      const updateUser = await axios.put(`/editUser/${user._id}`, {
+      const updateUser = await axios.put(`${BASE_URL}/editUser/${user._id}`, {
         name: userName,
         email: userEmail,
       });
@@ -23,7 +23,7 @@ export const UserList = (props) => {
   // DELETE
   const deleteUser = async (userID) => {
     const deleteOne = await axios
-      .delete(`/deleteUser/${userID}`)
+      .delete(`${BASE_URL}/deleteUser/${userID}`)
       .then(() => {
         "deleted";
       })
